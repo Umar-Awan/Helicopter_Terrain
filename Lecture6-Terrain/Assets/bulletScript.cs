@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+    public GameObject dhamaka;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,18 @@ public class bulletScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        print("Bullet collision");
 
-        if (!collision.gameObject.name.StartsWith("Terrain"))
+        
+        if(collision.gameObject.name.StartsWith("Enemy"))
         {
-            Destroy(collision.gameObject);
+           Vector3 enemypos= collision.gameObject.transform.position;
+            enemypos.x = Random.Range(0, 1000);
+            enemypos.z = Random.Range(0, 1000);
+            collision.gameObject.transform.position = enemypos;
         }
         Destroy(transform.gameObject);
+        Instantiate(dhamaka, transform.position, transform.rotation);
     }
 
     /*private void OnTriggerEnter(Collider col)

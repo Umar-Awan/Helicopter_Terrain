@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class HeliScript : MonoBehaviour
@@ -47,7 +48,7 @@ public class HeliScript : MonoBehaviour
         {
             transform.Translate(0, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.W))
+       /* if (Input.GetKeyDown(KeyCode.W))
         {
             transform.Rotate(-3, 0, 0);
         }
@@ -63,7 +64,7 @@ public class HeliScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.S))
         {
             transform.Rotate(-3, 0, 0);
-        }
+        }*/
         /*if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.Rotate(0, 0, 3);
@@ -83,7 +84,7 @@ public class HeliScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X))
         {
             Vector3 myposition = transform.position;
-            myposition.y -= 10;
+            myposition.y -= 1;
             Instantiate(bullet, myposition, transform.rotation);
         }
 
@@ -91,10 +92,6 @@ public class HeliScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        print("Collision!!!!!!! " + collision.gameObject.name);
-        if (!collision.gameObject.name.StartsWith("Terrain"))
-        {
-            Destroy(collision.gameObject);
-        }
+        SceneManager.LoadScene("GameOverScene");
     }
 }
