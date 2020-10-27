@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+
     public GameObject dhamaka;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class bulletScript : MonoBehaviour
             enemypos.x = Random.Range(0, 1000);
             enemypos.z = Random.Range(0, 1000);
             collision.gameObject.transform.position = enemypos;
+            ControllerScrpt.score++;
+            print("Score " + ControllerScrpt.score);
         }
         Destroy(transform.gameObject);
         Instantiate(dhamaka, transform.position, transform.rotation);

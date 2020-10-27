@@ -7,9 +7,12 @@ using UnityEngine;
 public class HeliScript : MonoBehaviour
 {
     public GameObject bullet;
+    public Camera cam1, cam2;
     // Start is called before the first frame update
     void Start()
     {
+        cam1.enabled = true;
+        cam2.enabled = false;
 
     }
 
@@ -87,7 +90,24 @@ public class HeliScript : MonoBehaviour
             myposition.y -= 1;
             Instantiate(bullet, myposition, transform.rotation);
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            switchCamera();
+        }
 
+    }
+    private void switchCamera()
+    {
+        if(cam1.enabled==true)
+        {
+            cam1.enabled = false;
+            cam2.enabled = true;
+        }
+        else
+        {
+            cam1.enabled = true;
+            cam2.enabled = false;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
